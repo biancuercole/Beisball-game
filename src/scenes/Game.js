@@ -15,19 +15,30 @@ export default class Game extends Phaser.Scene {
     .setCollideWorldBounds(true)
     .setCircle(139)
     .setBounce(1, 1)
-    .setVelocity(200, -300);
+    .setVelocity(100, -200);
 
-    this.bat = this.physics.add.sprite(400, 400, "platform", {immovable: true}).setScale(0.26)
+    this.bat = this.physics.add.sprite(600, 400, "platform").setScale(0.26)
     .setCollideWorldBounds(true);
-    this.bat.body.allowGravity = false;
 
-    this.physics.add.collider(this.bat, this.ball, () => {
-      this.bat.body.setGravityY(0);
-     });
-  
+    this.physics.add.collider(this.bat, this.ball);
+
+    this.cursors = this.input.keyboard.createCursorKeys();
   }
 
   update() {
-
+    if(this.cursors.left.isDown) {
+      this.bat.setVelocityX(-100)
+    } else if (this.cursors.right.isDown) {
+      this.bat.setVelocityX(100)
+    } else {
+      this.bat.setVelocityX(0)
+    }
+    if(this.cursors.up.isDown) {
+      this.bat.setVelocityY(-100)
+    } else if (this.cursors.down.isDown) {
+      this.bat.setVelocityY(100)
+    } else {
+      this.bat.setVelocityY(0)
+    }
   }
 }
