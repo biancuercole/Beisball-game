@@ -5,7 +5,7 @@ export default class Game extends Phaser.Scene {
   }
 
   init() {
-    this.score == 1;
+    this.score = 0;
   }
 
   create() {
@@ -26,7 +26,12 @@ export default class Game extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
+  nextLevel() {
+  console.log("nivel");
+  }
+
   update() {
+    //mouse
     if(this.cursors.left.isDown) {
       this.bat.setVelocityX(-100)
     } else if (this.cursors.right.isDown) {
@@ -42,6 +47,10 @@ export default class Game extends Phaser.Scene {
     } else {
       this.bat.setVelocityY(0)
       this.bat.body.allowGravity = false;
+    }    
+
+    if (this.score == 10) {
+      this.newLevel();
     }
   }
 
@@ -52,7 +61,11 @@ export default class Game extends Phaser.Scene {
       ball.setVelocity(100, -200);
     } else {
       ball.setVelocity(-100, -200);
-    }
-    //this.ball.body.setVelocitY(100, -200);
+    }    
+  }
+
+  newLevel () {
+    this.score = 0;
+    console.log(this.score);
   }
 }
