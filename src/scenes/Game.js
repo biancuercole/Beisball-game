@@ -12,7 +12,7 @@ export default class Game extends Phaser.Scene {
   create() {
     //pelota
     this.ballSpeed = 150;
-    this.batSpeed = 130;
+    this.batSpeed = 140;
     this.ball = this.physics.add.sprite(400, 300, "ball").setScale(0.20)
     .setCollideWorldBounds(true)
     .setCircle(139)
@@ -100,12 +100,7 @@ export default class Game extends Phaser.Scene {
     const randomColor = Phaser.Display.Color.RandomRGB();
     this.cameras.main.setBackgroundColorrandomColor;
     //obstaculo
-    this.obstacleX = Phaser.Math.FloatBetween( 20, 750);
-    this.obstacleY = Phaser.Math.FloatBetween( 20, 550);
-    const randomScale = Phaser.Math.FloatBetween(0.05, 0.15)
-    this.obstacle.create(this.obstacleX, this.obstacleY, "obstacle")
-    .setScale(randomScale)
-    .refreshBody();
+    this.createObst();
     //velocidad pelota
     this.ballSpeed = this.ballSpeed * 1.1;
     if (this.ball.body.velocity.x > 0) {
@@ -121,6 +116,15 @@ export default class Game extends Phaser.Scene {
     }
   }   
 
+  createObst() {
+        this.obstacleX = Phaser.Math.FloatBetween( 20, 750);
+    this.obstacleY = Phaser.Math.FloatBetween( 20, 550);
+    const randomScale = Phaser.Math.FloatBetween(0.05, 0.15)
+    this.obstacle.create(this.obstacleX, this.obstacleY, "obstacle")
+    .setScale(randomScale)
+    .refreshBody();
+  }
+  
   victory() {
     console.log("victory");
     this.victoryText = this.add.text(260, 220, "  ¡GANASTE!\nFelicitaciones :)",{
