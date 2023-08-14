@@ -2,6 +2,7 @@
 
 Este proyecto fue realizado para aplicar los conocimientos dados en el Módulo 3 de la materia de Programación II. 
 Se realizó un juego cumpliendo con las siguientes condiciones: 
+
  -Solo se pueden generar 3 escenas (index.html, main.js y game.js). A estas se le agrego la escena de Preload para organizar mejor la precarga de imagenes utilizadas, con la autorización de los profesores de la cátedra. 
  -Al ocurrir un choque entre la plataforma y la pelota se suma un punto a un contador, y al obtener 10 puntos se pasa de nivel. 
  -Al pasar de nivel se aumenta la velocidad de la pelota en un 10% y se generan obstaculos en ubicaciones random y con escalas aleatorias.
