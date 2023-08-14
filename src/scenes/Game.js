@@ -11,7 +11,7 @@ export default class Game extends Phaser.Scene {
 
   create() {
     //pelota
-    this.ballSpeed = 150;
+    this.ballSpeed = 155;
     this.batSpeed = 140;
     this.ball = this.physics.add.sprite(400, 300, "ball").setScale(0.20)
     .setCollideWorldBounds(true)
