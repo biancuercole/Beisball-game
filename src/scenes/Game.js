@@ -6,28 +6,35 @@ export default class Game extends Phaser.Scene {
 
   init() {
     this.score = 0;
+    this.level = 1;
   }
 
   create() {
-    console.log("prueba");
+    console.log("this.level");
 
     this.ball = this.physics.add.sprite(400, 300, "ball").setScale(0.20)
     .setCollideWorldBounds(true)
     .setCircle(139)
     .setBounce(1, 1)
-    .setVelocity(100, -200);
+    .setVelocity(100, -200)
+    .refreshBody();
 
     this.bat = this.physics.add.sprite(600, 400, "platform").setScale(0.26)
     .setCollideWorldBounds(true)
+    .setVelocity(100, -100)
     .setBounce(1, 1);
 
+    this.obstacle = this.physics.add.staticGroup();
+
     this.physics.add.collider(this.ball, this.bat, this.points, null, this);
+    this.physics.add.collider(this.ball, this.obstacle);
 
     this.cursors = this.input.keyboard.createCursorKeys();
-  }
 
-  nextLevel() {
-  console.log("nivel");
+    //color de fondo
+      const randomColor = Phaser.Display.Color.RandomRGB();
+      this.cameras.main.setBackgroundColor(randomColor);
+    
   }
 
   update() {
@@ -49,7 +56,7 @@ export default class Game extends Phaser.Scene {
       this.bat.body.allowGravity = false;
     }    
 
-    if (this.score == 10) {
+    if (this.score == 1) {
       this.newLevel();
     }
   }
@@ -65,7 +72,20 @@ export default class Game extends Phaser.Scene {
   }
 
   newLevel () {
+    this.level += 1;
     this.score = 0;
     console.log(this.score);
-  }
+    console.log(this.level);
+    const randomColor = Phaser.Display.Color.RandomRGB();
+    this.cameras.main.setBackgroundColorrandomColor;
+
+    this.obstacleX = Phaser.Math.FloatBetween( 20, 750);
+    this.obstacleY = Phaser.Math.FloatBetween( 20, 550);
+    const randomScale = Phaser.Math.FloatBetween(0.10, 0.20)
+    this.obstacle.create(this.obstacleX, this.obstacleY, "obstacle", {immovable: true})
+    .setScale(randomScale)
+    .refreshBody();
+
+  }   
+
 }

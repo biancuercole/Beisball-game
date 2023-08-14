@@ -7,6 +7,7 @@ export default class Preload extends Phaser.Scene {
     preload() {
         this.load.image("ball", "./public/images/ball.png");
         this.load.image("platform", "./public/images/bat.png");
+        this.load.image("obstacle", "./public/images/obstacle.png");
     }
 
     create() {
