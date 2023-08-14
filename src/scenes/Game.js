@@ -1,6 +1,5 @@
 export default class Game extends Phaser.Scene {
   constructor() {
-
     super("game");
   }
 
@@ -45,7 +44,7 @@ export default class Game extends Phaser.Scene {
   }
 
   update() {
-    //mouse
+    //controles
     if(this.cursors.left.isDown) {
       this.bat.setVelocityX(-this.batSpeed)
     } else if (this.cursors.right.isDown) {
@@ -62,11 +61,11 @@ export default class Game extends Phaser.Scene {
       this.bat.setVelocityY(0)
       this.bat.body.allowGravity = false;
     }    
-
+    //pasaje de nivel
     if (this.score == 10) {
       this.newLevel();
     }
-
+    //zona de perder
     if (this.ball.y >= 550) {
       this.defeat();
     }
@@ -78,6 +77,7 @@ export default class Game extends Phaser.Scene {
     this.scoreText.setText("Score: " + this.score, {
       fontFamily:"Verdana",
     });
+    //hacer que la pelota avance para el lado correspondiente
     if (ball.body.velocity.x > 0) {
       this.ball.body.setVelocity(this.ballSpeed, -this.ballSpeed);
     } else {
@@ -100,8 +100,8 @@ export default class Game extends Phaser.Scene {
     const randomColor = Phaser.Display.Color.RandomRGB();
     this.cameras.main.setBackgroundColorrandomColor;
     //obstaculo
-    this.createObst();
-    //velocidad pelota
+    this.newObstacle();
+    //velocidades
     this.ballSpeed = this.ballSpeed * 1.1;
     if (this.ball.body.velocity.x > 0) {
       this.ball.body.setVelocity(this.ballSpeed, -this.ballSpeed);
@@ -110,14 +110,14 @@ export default class Game extends Phaser.Scene {
     }  
     this.batSpeed = this.batSpeed * 1.1;
     this.bat.body.setVelocity(this.batSpeed, -this.batSpeed);
-
+    //condicion victoria
     if (this.level == 20) {
       this.victory();
     }
   }   
 
-  createObst() {
-        this.obstacleX = Phaser.Math.FloatBetween( 20, 750);
+  newObstacle() {
+    this.obstacleX = Phaser.Math.FloatBetween( 20, 750);
     this.obstacleY = Phaser.Math.FloatBetween( 20, 550);
     const randomScale = Phaser.Math.FloatBetween(0.05, 0.15)
     this.obstacle.create(this.obstacleX, this.obstacleY, "obstacle")
