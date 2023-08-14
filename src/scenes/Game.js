@@ -109,11 +109,11 @@ export default class Game extends Phaser.Scene {
     //velocidad pelota
     this.ballSpeed = this.ballSpeed * 1.1;
     if (this.ball.body.velocity.x > 0) {
-      this.ball.body.setVelocityX(this.ballSpeed);
+      this.ball.body.setVelocity(this.ballSpeed, -this.ballSpeed);
     } else {
-      this.ball.body.setVelocityX(-this.ballSpeed);
+      this.ball.body.setVelocity(-this.ballSpeed, -this.ballSpeed);
     }  
-    console.log(this.ballSpeed);
+    this.batSpeed = this.batSpeed * 1.1;
 
     if (this.level == 20) {
       this.victory();
