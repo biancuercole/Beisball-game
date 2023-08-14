@@ -10,8 +10,7 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
-    console.log("this.level");
-
+    //pelota
     this.ballSpeed = 150;
     this.batSpeed = 100;
     this.ball = this.physics.add.sprite(400, 300, "ball").setScale(0.20)
@@ -20,24 +19,25 @@ export default class Game extends Phaser.Scene {
     .setBounce(1, 1)
     .setVelocity(this.ballSpeed, -this.ballSpeed)
     .refreshBody();
-
+    //pala
     this.bat = this.physics.add.sprite(600, 400, "platform").setScale(0.26)
     .setCollideWorldBounds(true)
     .setVelocity(this.batSpeed, -this.batSpeed)
     .setBounce(1, 1);
-
+    //obstaculos
     this.obstacle = this.physics.add.staticGroup();
-
+    //fisicas
     this.physics.add.collider(this.ball, this.bat, this.points, null, this);
     this.physics.add.collider(this.ball, this.obstacle);
     this.physics.add.collider(this.bat, this.obstacle);
-
+    //cursor
     this.cursors = this.input.keyboard.createCursorKeys();
-
     //color de fondo
       const randomColor = Phaser.Display.Color.RandomRGB();
       this.cameras.main.setBackgroundColor(randomColor);
-    
+    //texto
+    this.scoreText = this.add.text(10, 7, "Score: " + this.score);
+    this.levelText = this.add.text(700, 7, "Level: " + this.level);
   }
 
   update() {
@@ -59,14 +59,15 @@ export default class Game extends Phaser.Scene {
       this.bat.body.allowGravity = false;
     }    
 
-    if (this.score == 1) {
+    if (this.score == 10) {
       this.newLevel();
     }
   }
 
   points (ball, bat) {
     this.score += 1;
-    console.log(this.score);
+    //texto
+    this.scoreText.setText("Score: " + this.score);
     if (ball.body.velocity.x > 0) {
       ball.setVelocity(100, -200);
     } else {
@@ -78,9 +79,9 @@ export default class Game extends Phaser.Scene {
     //contadores
     this.level += 1;
     this.score = 0;
-
-    console.log(this.score);
-    console.log(this.level);
+    //texto
+    this.scoreText.setText("Score: " + this.score);
+    this.levelText.setText("Level: " + this.level);
     //fondos
     const randomColor = Phaser.Display.Color.RandomRGB();
     this.cameras.main.setBackgroundColorrandomColor;
@@ -99,5 +100,9 @@ export default class Game extends Phaser.Scene {
       this.ball.body.setVelocityX(-this.ballSpeed);
     }  
     console.log(this.ballSpeed);
+
+    if (this.level >= 20) {
+      console.log("ganaste")
+    }
   }   
 }
