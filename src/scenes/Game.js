@@ -36,8 +36,12 @@ export default class Game extends Phaser.Scene {
       const randomColor = Phaser.Display.Color.RandomRGB();
       this.cameras.main.setBackgroundColor(randomColor);
     //texto
-    this.scoreText = this.add.text(10, 7, "Score: " + this.score);
-    this.levelText = this.add.text(700, 7, "Level: " + this.level);
+    this.scoreText = this.add.text(10, 7, "Score: " + this.score, {
+      fontFamily: "Verdana",
+    });
+    this.levelText = this.add.text(700, 7, "Level: " + this.level, {
+      fontFamily: "Verdana",
+    });
   }
 
   update() {
@@ -62,12 +66,18 @@ export default class Game extends Phaser.Scene {
     if (this.score == 10) {
       this.newLevel();
     }
+
+    if (this.ball.y >= 550) {
+      this.defeat();
+    }
   }
 
   points (ball, bat) {
     this.score += 1;
     //texto
-    this.scoreText.setText("Score: " + this.score);
+    this.scoreText.setText("Score: " + this.score, {
+      fontFamily:"Verdana",
+    });
     if (ball.body.velocity.x > 0) {
       ball.setVelocity(100, -200);
     } else {
@@ -80,8 +90,12 @@ export default class Game extends Phaser.Scene {
     this.level += 1;
     this.score = 0;
     //texto
-    this.scoreText.setText("Score: " + this.score);
-    this.levelText.setText("Level: " + this.level);
+    this.scoreText.setText("Score: " + this.score, {
+      fontFamily: "Verdana",
+    });
+    this.levelText.setText("Level: " + this.level, {
+      fontFamily: "Verdana",
+    });
     //fondos
     const randomColor = Phaser.Display.Color.RandomRGB();
     this.cameras.main.setBackgroundColorrandomColor;
@@ -101,8 +115,28 @@ export default class Game extends Phaser.Scene {
     }  
     console.log(this.ballSpeed);
 
-    if (this.level >= 20) {
-      console.log("ganaste")
+    if (this.level == 20) {
+      this.victory();
     }
   }   
+
+  victory() {
+    console.log("victory");
+    this.victoryText = this.add.text(260, 220, "  ¡GANASTE!\nFelicitaciones :)",{
+      fontSize: "40px",
+      fill: "#FFFFFF",
+      fontFamily: "verdana",
+    });
+    this.bat.disableBody(true, true);
+  }
+
+  defeat() {
+    console.log("defeat");
+    this.defeatText = this.add.text(190, 230, "           Perdiste :( \n apretá F5 para reintentar", {
+      fontSize: "35px",
+      fill: "#FFFFFF",
+      fontFamily: "verdana",
+    });
+    this.bat.disableBody(true, true);
+  }
 }
