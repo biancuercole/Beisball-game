@@ -5,7 +5,7 @@ export default class Game extends Phaser.Scene {
 
   init() {
     this.score = 0;
-    this.level = 1;
+    this.level = 19;
     this.lost = false;
   }
 
@@ -68,10 +68,7 @@ export default class Game extends Phaser.Scene {
     }
     //zona de perder
     if (this.ball.y >= 550) {
-      this.lost= true;
-    }
-    if (this.victory) {
-      this.lost = false;
+      this.lost = true;
     }
     if (this.lost) {
       this.defeat();
@@ -140,6 +137,7 @@ export default class Game extends Phaser.Scene {
       fontFamily: "verdana",
     });
     this.bat.disableBody(true, true);
+    this.ball.disableBody(true, true);
   }
 
   defeat() {
