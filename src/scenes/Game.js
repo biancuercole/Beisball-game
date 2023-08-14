@@ -12,7 +12,7 @@ export default class Game extends Phaser.Scene {
   create() {
     //pelota
     this.ballSpeed = 150;
-    this.batSpeed = 100;
+    this.batSpeed = 130;
     this.ball = this.physics.add.sprite(400, 300, "ball").setScale(0.20)
     .setCollideWorldBounds(true)
     .setCircle(139)
@@ -47,17 +47,17 @@ export default class Game extends Phaser.Scene {
   update() {
     //mouse
     if(this.cursors.left.isDown) {
-      this.bat.setVelocityX(-100)
+      this.bat.setVelocityX(-this.batSpeed)
     } else if (this.cursors.right.isDown) {
-      this.bat.setVelocityX(100)
+      this.bat.setVelocityX(this.batSpeed)
     } else {
       this.bat.setVelocityX(0)
       this.bat.body.allowGravity = false;
     }
     if(this.cursors.up.isDown) {
-      this.bat.setVelocityY(-100)
+      this.bat.setVelocityY(-this.batSpeed)
     } else if (this.cursors.down.isDown) {
-      this.bat.setVelocityY(100)
+      this.bat.setVelocityY(this.batSpeed)
     } else {
       this.bat.setVelocityY(0)
       this.bat.body.allowGravity = false;
@@ -79,9 +79,9 @@ export default class Game extends Phaser.Scene {
       fontFamily:"Verdana",
     });
     if (ball.body.velocity.x > 0) {
-      ball.setVelocity(100, -200);
+      this.ball.body.setVelocity(this.ballSpeed, -this.ballSpeed);
     } else {
-      ball.setVelocity(-100, -200);
+      this.ball.body.setVelocity(-this.ballSpeed, -this.ballSpeed);
     }    
   }
 
@@ -114,6 +114,7 @@ export default class Game extends Phaser.Scene {
       this.ball.body.setVelocity(-this.ballSpeed, -this.ballSpeed);
     }  
     this.batSpeed = this.batSpeed * 1.1;
+    this.bat.body.setVelocity(this.batSpeed, -this.batSpeed);
 
     if (this.level == 20) {
       this.victory();
