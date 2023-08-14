@@ -5,7 +5,7 @@ export default class Game extends Phaser.Scene {
 
   init() {
     this.score = 0;
-    this.level = 19;
+    this.level = 1;
     this.lost = false;
   }
 
