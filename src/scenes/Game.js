@@ -5,7 +5,8 @@ export default class Game extends Phaser.Scene {
 
   init() {
     this.score = 0;
-    this.level = 1;
+    this.level = 19;
+    this.lost = false;
   }
 
   create() {
@@ -67,7 +68,12 @@ export default class Game extends Phaser.Scene {
     }
     //zona de perder
     if (this.ball.y >= 550) {
-      this.lost = true;
+      this.lost= true;
+    }
+    if (this.victory) {
+      this.lost = false;
+    }
+    if (this.lost) {
       this.defeat();
     }
   }
@@ -127,7 +133,6 @@ export default class Game extends Phaser.Scene {
   }
   
   victory() {
-    this.lost = false;
     console.log("victory");
     this.victoryText = this.add.text(260, 220, "  ¡GANASTE!\nFelicitaciones :)",{
       fontSize: "40px",
