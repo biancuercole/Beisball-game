@@ -20,3 +20,5 @@ El modo de juego es simple, solo hay que mover al bate con las flechas del tecla
 Para evitar generar una escena para cada nivel, se creó un metodo llamado "newLevel" que se ejecuta cada vez que el puntaje acumula 10 puntos mas, lo cual hace que la velocidad de la pelota aumente y se genere un nuevo obstaculo en la pantalla. Este uso de métodos hace que la información sea más resumida y simple de comprender y que el mismo método se utilice en niveles con diferentes propiedades, por ejemplo si en un nivel se debe aumentar en un 20% la velocidad, se usa la misma plantilla y se cambia el valor de aumento. 
 
 Espero que disfrutes del juego! Ante cualquier duda te podés comunicar conmigo por medio de mail: biancaercole2003@gmail.com
+
+Link para la pagina del juego: https://biancuercole.github.io/Beisball-game/
