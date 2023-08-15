@@ -102,7 +102,7 @@ export default class Game extends Phaser.Scene {
     });
     //fondos
     const randomColor = Phaser.Display.Color.RandomRGB();
-    this.cameras.main.setBackgroundColorrandomColor;
+    this.cameras.main.setBackgroundColor(randomColor);
     //obstaculo
     this.newObstacle();
     //velocidades
